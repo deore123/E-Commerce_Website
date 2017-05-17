@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<!--
+
+
+Student Info: Name=SupriyaDeore, ID=19299
+
+Subject: CS557C_HW1_SUMMER_2015
+
+Author: SUPRIYA DEORE
+
+Filename: order.html
+
+Date and Time: Nov 9, 2016 4:02:19 PM
+
+Project Name: MyFirstWebSite
+
+
+-->
+
+<html>
+    <head>
+        <title>Order Here</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="design.css" rel="stylesheet" type="text/css"/>
+        <script>
+            function AddPriceObject(itemToPrice)
+            {
+                var TheCartItemPrice = document.getElementById('cartItemPrice');
+                var TheCartItem = document.getElementById("CartItem"+itemToPrice);
+                var ThePriceDiv = document.createElement('div');
+                var ThePrice = document.createTextNode("$" +TheCartItem.getAttribute("data-Price"));
+                ThePriceDiv.id = 'PriceItem' + itemToPrice;
+                ThePriceDiv.appendChild(ThePrice); 
+                TheCartItemPrice.appendChild(ThePriceDiv);
+            }
+            function AddQuantityObject(item){
+                var TheCartItemQuantity = document.getElementById('cartItemQuantity');
+                var TheQuantityDiv = document.createElement('div');
+                var TheQuantity = document.createTextNode("1");
+                TheQuantityDiv.id = 'QuantityItem' + item;
+                TheQuantityDiv.appendChild(TheQuantity); 
+                TheCartItemQuantity.appendChild(TheQuantityDiv);
+            }
+            function AddTotalObject(ItemToRemove){
+                
+            }
+            function RemoveCartItem(item){
+                var obj =document.geElementById('CartItem'+item);
+                obj.pearentNode.removeChild(obj);
+                obj = document.getElementById('RemoveItem'+item);
+                obj.pearentNode.removeChild(obj);
+                obj = document.getElementById('PriceItem'+item);
+                obj.pearentNode.removeChild(obj);
+            }
+            function AddRemoveObject(itemToRemove){
+                var TheCartItemremove = Document.getElementById('cartItemRemove');
+                var TheRemoveDiv = document.createElement('div');
+                var TheRemoveImage = document.createElement('img');
+                TheRemoveDiv.id ='RemoveItem'+itemToRemove;
+                TheRemoveImage.src ="images/remove.png";
+                TheRemoveImage.height= 25;
+                TheRemoveImage.onclick= function() {RemoveCartItem(itemToRemove);};
+                TheRemoveDiv.appendChild(TheRemoveImage);
+                TheCartItemremove.appendChild(TheRemoveDiv);
+            }
+            function ShowCartItems(){
+                
+                var TheCartItems = document.getElementById('cartItemImages');
+                var TheCartItemRemove = document.getElementById('cartItemRemove');
+                var TheCartItemPrice = document.getElementById('cartItemPrice');
+                var TheCartItemQuantity = document.geElementById('cartItemQuantity');
+                var TheRemoveNodeList = TheCartItemRemove.getElementsByTagName('div');
+                var TheImageNodeList = TheCartItems.getElementsByTagName('div');
+                var ThePriceNodeList =TheCartItems.getElementsByTagName('div');
+                var TheQuantityNodeList =TheCartItemQuantity.getElementsByTagName('div');
+                for(i=0;i<=TheImageNodeList.length; i++)
+                {
+                    TheImageNodeList[i].style.position="absolute";
+                    TheImageNodeList[i].style.top=(120* i)+"px";
+                    TheImageNodeList[i].style.left =(0)+"px";
+                    TheRemoveNodeList[i].style.position="absolute";
+                    TheRemoveNodeList[i].style.top =(120 * i) +50 + "px";
+                    TheRemoveNodeList[i].style.left =(0)+"px";
+                    ThePriceNodeList[i].style.position ="absolute";
+                    ThePriceNodeList[i].style.top = (120 * i) + 50 + "px";
+                    ThePriceNodeList[i].style.left = (0) + "px";
+                    TheQuantityNodeList[i].style.position ="absolute";
+                    TheQuantityNodeList[i].style.top = (120 * i) + 50 + "px";
+                    TheQuantityNodeList[i].style.left = (0) + "px";
+                    
+                }
+               
+            }
+            function FindIfIdExists(obj,id)
+            {
+                var TheNodeList = obj.getElementsByTagName('div');
+                for(NodeNumber =0; NodeNumber<TheNodeList.length; NodeNumber++)
+                {
+                    if(TheNodeList[NodeNumber].id === id){
+                        return NodeNumber+1;
+                    }
+                }
+                return 0;
+            }
+            function ContinueShopping(){
+                document.getElementById('product').style.visibility ='visible';
+                document.getElementById('cart').style.visibility ='hidden';
+            }
+            function AddToCart(itemToAdd){
+                 var TheCartItemImages = document.getElementById('cartItemImages');
+                 
+                  var FoundNodeCount = FindIfIdExists(TheCartItemImages,"CartItem"+itemToAdd);
+                if(FoundNodeCount === 0){
+                    var TheCartItemToAdd = document.getElementById(itemToAdd).cloneNode(true);
+                    TheCartItemToAdd.id= "CartItem"+itemToAdd;
+                    TheCartItemToAdd.childNodes[1].height=100;
+                    TheCartItemImages.appendChild(TheCartItemToAdd); 
+                    AddRemoveObject(itemToAdd);
+                }
+                ShowCartItems();
+                document.getElementById('product').style.visibility ='hidden';
+                document.getElementById('cart').style.visibility ='visible';
+            }
+        </script>
+    </head>
+    <body>
+        
+        <div id="wrapper" >
+            <header><a href="index.html">Shoppers Stop</a></header>
+        
+        <ul id="navBarList">
+            <li><a href="contact.html"> Contact Us</a></li> 
+            <li><a href="checkOut.html"> Checkout</a></li> 
+            <li><a href="order.html"> Order</a></li> 
+            <li><a href="index.html"> Home</a></li>
+        </ul>
+            <div id="content">
+        <p id="contentTxt"> 
+            </div>
+            
+        <div id="product" style='visibility: visible'>
+            
+            <div id="001" data-price="42.00"style="position: absolute; left:200px; top:150px">
+               <img src="images/001.jpg" height="300" width="350">
+            </div>
+            <div style="position: absolute; left: 200px; top:450px">
+            <img src="images/cart.jpg" height="43" onclick='AddToCart("001")'>
+            </div>
+            <div style="position: absolute; align:right; font-size: 18pt; left:425px; top: 455px">
+                $42.00
+            </div>
+            <div style="position: absolute; left: 200px; top:500px" >
+            <input type="radio" name="hcopy" value="Hard-Copy" /><span>Hard-Copy Prints</span>
+            </div>
+            <div style="position: absolute; left: 200px; top:520px" >
+            <input type="radio" name="posters" value="Posters" /><span>Poster Prints</span>
+            </div>
+            <div style="position: absolute; left: 200px; top:540px" >
+            <input type="radio" name="coffeeMug" value="CoffeeMug" /><span>Coffee Mugs</span>
+            </div>
+            <div style="position: absolute; left: 200px; top:560px" >
+            <input type="radio" name="Tshirt" value="Tshirt" /><span>T-Shirt Prints</span>
+            </div>
+            
+            <div id="002" data-price="50.00"style="position: absolute; left:600px; top:150px">
+            <img src="images/002.jpg" height="300" width="350">
+            </div>
+            <div style="position: absolute; left: 600px; top:450px">
+            <img src="images/cart.jpg" height="43" onclick='AddToCart("002")'>
+            </div>
+            <div style="position: absolute; align:right; font-size: 18pt; left:825px; top: 455px">
+                $50.00
+            </div>
+            <div style="position: absolute; left: 600px; top:500px" >
+            <input type="radio" name="hcopy" value="Hard-Copy" /><span>Hard-Copy Prints</span>
+            </div>
+            <div style="position: absolute; left: 600px; top:520px" >
+            <input type="radio" name="posters" value="Posters" /><span>Poster Prints</span>
+            </div>
+            <div style="position: absolute; left: 600px; top:540px" >
+            <input type="radio" name="coffeeMug" value="CoffeeMug" /><span>Coffee Mugs</span>
+            </div>
+            <div style="position: absolute; left: 600px; top:560px" >
+            <input type="radio" name="Tshirt" value="Tshirt" /><span>T-Shirt Prints</span>
+            </div>
+            
+            <div id="003" data-price="350.00"style="position: absolute; left:1000px; top:150px">
+            <img src="images/003.jpg" height="300" width="350">
+            </div>
+            <div style="position: absolute; left: 1000px; top:450px">
+            <img src="images/cart.jpg" height="43" onclick='AddToCart("003")'>
+            </div>
+            <div style="position: absolute; align:right; font-size: 18pt; left:1225px; top: 455px">
+                $35.00
+            </div>
+            <div style="position: absolute; left: 1000px; top:500px" >
+            <input type="radio" name="hcopy" value="Hard-Copy" /><span>Hard-Copy Prints</span>
+            </div>
+            <div style="position: absolute; left: 1000px; top:520px" >
+            <input type="radio" name="posters" value="Posters" /><span>Poster Prints</span>
+            </div>
+            <div style="position: absolute; left: 1000px; top:540px" >
+            <input type="radio" name="coffeeMug" value="CoffeeMug" /><span>Coffee Mugs</span>
+            </div>
+            <div style="position: absolute; left: 1000px; top:560px" >
+            <input type="radio" name="Tshirt" value="Tshirt" /><span>T-Shirt Prints</span>
+            </div>
+        
+            
+            <div id="004" data-price="2000.00"style="position: absolute; left:200px; top:600px">
+            <img src="images/004.jpg" height="300" width="350">
+            </div>
+            <div style="position: absolute; left: 200px; top:905px">
+            <img src="images/cart.jpg" height="43" onclick='AddToCart("004")'>
+            </div>
+            <div style="position: absolute; align:right; font-size: 18pt; left:425px; top: 905px">
+                $20.00
+            </div> 
+            
+            
+            <div id="005" data-price="99.00"style="position: absolute; left:600px; top:600px">
+            <img src="images/005.jpg" height="300" width="350">
+            </div>
+            <div style="position: absolute; left: 600px; top:905px">
+            <img src="images/cart.jpg" height="43" onclick='AddToCart("005")'>
+            </div>
+            <div style="position: absolute; align:right; font-size: 18pt; left:825px; top: 905px">
+                $45.00
+            </div>
+            
+            <div id="006" data-price="100.00"style="position: absolute; left:1000px; top:600px">
+            <img src="images/006.jpg" height="300" width="350">
+            </div>
+            <div style="position: absolute; left: 1000px; top:905px">
+            <img src="images/cart.jpg" height="43" onclick ='AddToCart("006")'>
+            </div>
+            <div style="position: absolute; align:right; font-size: 18pt; left:1225px; top: 905px">
+                $75.00
+            </div>
+            
+            
+        </div>
+        
+        <div id='cart' style='visibility: hidden'>
+            <div style="position: absolute; align:right; font-size: 25pt; left: 150px; top : 200px">
+            The Cart
+           </div>
+            <div style="position: absolute; left:475px; top:250px">
+                <img src="images/continueShopping.jpg" height="45" onclick='ContinueShopping()'>
+            </div>
+            <div id = "CartItem" </div>
+            <div id="cartItemImages" style="position: absolute; left: 75px; top: 150px"></div>
+            <div id="cartItemRemove" style="position: absolute; left: 200px; top: 150px"></div>
+            <div id="cartItemPrice" style="position: absolute; left: 250px; top: 150px"></div>
+            <div id="cartItemQuantity" style="position: absolute; left:400px; top: 150px"></div>
+            <div id="cartItemTotal" style="position: absolute; left:350px; top: 150px"></div>
+            <div id="cartTotal" style="position: absolute; left: 350px; top: 330px">Order Total</div>
+        </div>
+            
+            
+        <div id='Thankyou' style='visibility: hidden ; font-size: 100pt'>
+            Thank you for your order..
+        </div>
+        
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,122 @@
+
+/*
+
+
+Student Info: Name=SupriyaDeore, ID=19299
+
+Subject: CS557C_HW1_SUMMER_2015
+
+Author: SUPRIYA DEORE
+
+Filename: design.css
+
+Date and Time: Oct 19, 2016 2:14:14 PM
+
+Project Name: MyFirstWebSite
+
+
+*//* 
+    Created on : Oct 19, 2016, 2:14:14 PM
+    Author     : Supriya
+*/
+
+#wrapper {
+   width : 1420px;
+   margin: 0 auto 0 auto;
+}
+header a {
+    text-decoration: none;
+    color:black;
+    width: 1420px;
+    height:100px;
+    margin-top: 15px;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 50px;
+}  
+
+header a:hover{
+    color:red;
+}
+
+#AboutUs {
+    color: black;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding-left: 20px;
+}
+#map {
+    padding-left: 20px;
+}
+h3
+{
+    text-align: center;
+    text-transform: uppercase;
+    color: red;
+}
+table
+{
+    width: 100%;
+    table-layout: fixed;
+}
+td
+{
+    padding: 50px;
+    vertical-align: top;
+}
+
+p span strong {
+    color:red;
+}
+
+    
+    
+
+
+#navBarList {
+    width:auto;
+    height: 35px;
+    margin:0;
+    
+}
+#navBarList li {
+    display: inline;
+    float: right;
+    margin-top: 5px;
+    padding-right: 20px;
+}
+#navBarList a {
+       color: black; 
+       text-decoration: none;
+       font-size: 20px;
+       font-family: sans-serif
+    }  
+#navBarList a:hover{
+        color:red;
+    }
+    
+        
+    
+    
+#content img {
+    width: 1400px;
+    height:580px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#contentTxt {
+    margin:0;
+    padding: 20px 0 0 20px;
+}
+
+footer {
+    width: 1420px;
+    height:100px;
+    text-align:center;
+    color: black;
+    font-size: 0.85em;
+    
+    
+}
+
+
